@@ -7,13 +7,13 @@ import { useContactForm } from "@/hooks/useContactForm";
 import { Loader2 } from "lucide-react";
 
 const fieldClasses =
-  "w-full border-b border-[var(--color-line)] bg-transparent py-3 text-[var(--text-body-lg)] text-[var(--color-text)] placeholder:text-[var(--color-dim)] transition-colors focus:border-[var(--color-monk)] focus:outline-none";
+  "w-full border-b border-[var(--color-line-strong)] bg-transparent py-3 text-[var(--text-body-lg)] text-[var(--color-text)] placeholder:text-[var(--color-dim)] transition-colors focus:border-[var(--color-monk)] focus:outline-none";
 
 export function Contact() {
   const { values, updateField, errors, status, handleSubmit } = useContactForm();
 
   return (
-    <Section id="contact">
+    <Section id="contact" className="bg-[var(--bg-contact)]">
       <Container>
         <div className="grid gap-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           <Reveal>
@@ -40,7 +40,7 @@ export function Contact() {
             {status === "success" ? (
               <div
                 role="status"
-                className="flex h-full min-h-[320px] flex-col justify-center gap-3 border border-[var(--color-line)] p-10"
+                className="flex h-full min-h-[320px] flex-col justify-center gap-3 border border-[var(--color-line-subtle)] bg-[var(--color-surface-card)] rounded-[var(--radius-md)] p-10"
               >
                 <p className="text-[var(--text-h4)] font-semibold text-[var(--color-text)]">Message received.</p>
                 <p className="text-[var(--text-body)] leading-relaxed text-[var(--color-muted)]">
@@ -50,8 +50,8 @@ export function Contact() {
               </div>
             ) : (
               <form noValidate onSubmit={handleSubmit} className="flex flex-col gap-8">
-                <div>
-                  <label htmlFor="name" className="font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-dim)]">
+                <div className="group">
+                  <label htmlFor="name" className="font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-dim)] transition-colors duration-300 group-focus-within:text-[var(--color-monk)]">
                     Name
                   </label>
                   <input
@@ -72,8 +72,8 @@ export function Contact() {
                   )}
                 </div>
 
-                <div>
-                  <label htmlFor="email" className="font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-dim)]">
+                <div className="group">
+                  <label htmlFor="email" className="font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-dim)] transition-colors duration-300 group-focus-within:text-[var(--color-monk)]">
                     Email
                   </label>
                   <input
@@ -94,8 +94,8 @@ export function Contact() {
                   )}
                 </div>
 
-                <div>
-                  <label htmlFor="service" className="font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-dim)]">
+                <div className="group">
+                  <label htmlFor="service" className="font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-dim)] transition-colors duration-300 group-focus-within:text-[var(--color-monk)]">
                     Service
                   </label>
                   <select
@@ -123,8 +123,8 @@ export function Contact() {
                   )}
                 </div>
 
-                <div>
-                  <label htmlFor="details" className="font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-dim)]">
+                <div className="group">
+                  <label htmlFor="details" className="font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-dim)] transition-colors duration-300 group-focus-within:text-[var(--color-monk)]">
                     Project details
                   </label>
                   <textarea
@@ -147,7 +147,7 @@ export function Contact() {
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="mt-4 inline-flex w-fit items-center gap-2.5 rounded-[var(--radius-sm)] bg-[var(--color-monk)] px-6 py-4 font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-on-monk)] transition-colors duration-300 hover:bg-[var(--color-monk-hover)] disabled:opacity-60"
+                  className="mt-4 inline-flex w-fit items-center gap-2.5 rounded-[var(--radius-sm)] bg-[var(--color-monk)] px-6 py-4 font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-on-monk)] transition-all duration-300 hover:bg-[var(--color-monk-hover)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
                 >
                   {status === "submitting" && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
                   {status === "submitting" ? "Sending" : "Send message"}

@@ -6,7 +6,7 @@ import { Reveal } from "@/components/motion/Reveal";
 
 export function Studio() {
   return (
-    <Section id="studio">
+    <Section id="studio" className="bg-[var(--bg-studio)]">
       <Container>
         <Reveal>
           <Eyebrow>{studio.eyebrow}</Eyebrow>
@@ -28,12 +28,19 @@ export function Studio() {
 
         <Reveal
           stagger={0.12}
-          className="mt-24 grid gap-px overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-line)] bg-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-24 grid gap-px overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-line-subtle)] bg-[var(--color-line-subtle)] sm:grid-cols-2 lg:grid-cols-4"
         >
           {principles.map((principle) => (
-            <div key={principle.index} className="flex flex-col gap-6 bg-[var(--color-bg)] p-8">
-              <span className="font-mono text-[var(--text-caption)] text-[var(--color-monk)]">{principle.index}</span>
-              <h3 className="text-[var(--text-h4)] font-semibold text-[var(--color-text)]">{principle.title}</h3>
+            <div
+              key={principle.index}
+              className="group flex flex-col gap-6 bg-[var(--color-surface-card)] p-8 transition-all duration-300 hover:bg-[var(--color-surface-hover)] hover:-translate-y-0.5"
+            >
+              <span className="font-mono text-[var(--text-caption)] text-[var(--color-monk)] transition-transform duration-300 group-hover:translate-x-1">
+                {principle.index}
+              </span>
+              <h3 className="text-[var(--text-h4)] font-semibold text-[var(--color-text)] transition-colors duration-300 group-hover:text-[var(--color-monk)]">
+                {principle.title}
+              </h3>
               <p className="text-[var(--text-caption)] leading-relaxed text-[var(--color-muted)]">
                 {principle.description}
               </p>

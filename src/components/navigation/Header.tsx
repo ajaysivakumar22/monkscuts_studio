@@ -45,7 +45,7 @@ export function Header() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
-        scrolled ? "bg-[var(--color-bg)]/90 backdrop-blur border-b border-[var(--color-line)]" : "bg-transparent"
+        scrolled ? "bg-[var(--bg-hero)]/90 backdrop-blur border-b border-[var(--color-line-subtle)]" : "bg-transparent"
       )}
     >
       <Container className="flex h-20 items-center justify-between">
@@ -88,7 +88,7 @@ export function Header() {
       <div
         id="mobile-menu"
         className={cn(
-          "fixed inset-0 top-20 z-40 bg-[var(--color-bg)] transition-opacity duration-300 md:hidden",
+          "fixed inset-0 top-20 z-40 bg-[var(--bg-hero)] transition-opacity duration-300 md:hidden",
           menuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         )}
       >

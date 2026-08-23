@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export function Capabilities() {
   return (
-    <Section id="capabilities">
+    <Section id="capabilities" className="bg-[var(--bg-capabilities)]">
       <Container>
         <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-end">
           <Reveal>
@@ -23,11 +23,11 @@ export function Capabilities() {
           </Reveal>
         </div>
 
-        <Reveal as="div" stagger={0.08} className="mt-20 border-t border-[var(--color-line)]">
+        <Reveal as="div" stagger={0.08} className="mt-20 border-t border-[var(--color-line-subtle)]">
           {services.map((service) => (
             <div
               key={service.index}
-              className="group grid grid-cols-[3rem_1fr] items-baseline gap-4 border-b border-[var(--color-line)] py-8 transition-colors duration-300 hover:bg-[var(--color-surface)] sm:grid-cols-[3rem_minmax(0,1fr)_minmax(0,1.3fr)_2rem] sm:items-center sm:gap-8 sm:px-4"
+              className="group relative grid grid-cols-[3rem_1fr] items-baseline gap-4 border-b border-[var(--color-line-subtle)] py-8 transition-all duration-300 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:scale-y-0 before:bg-[var(--color-monk)] before:transition-transform before:duration-300 hover:bg-[var(--color-surface-hover)] hover:pl-4 group-hover:before:scale-y-100 sm:grid-cols-[3rem_minmax(0,1fr)_minmax(0,1.3fr)_2rem] sm:items-center sm:gap-8 sm:px-6"
             >
               <span className="font-mono text-[var(--text-caption)] text-[var(--color-dim)]">{service.index}</span>
               <h3 className="text-[var(--text-h3)] font-semibold tracking-tight text-[var(--color-text)] transition-colors duration-300 group-hover:text-[var(--color-monk)]">

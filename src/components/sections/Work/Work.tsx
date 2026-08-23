@@ -6,7 +6,7 @@ import { Reveal } from "@/components/motion/Reveal";
 
 export function Work() {
   return (
-    <Section id="work">
+    <Section id="work" className="bg-[var(--bg-work)]">
       <Container>
         <Reveal>
           <Eyebrow>{workEyebrow}</Eyebrow>
@@ -17,7 +17,7 @@ export function Work() {
 
         <div className="mt-20 flex flex-col">
           {projects.map((project, i) => (
-            <Reveal key={project.number} delay={i * 0.05} className="group border-t border-[var(--color-line)] py-12 last:border-b">
+            <Reveal key={project.number} delay={i * 0.05} className="group border-t border-[var(--color-line-subtle)] py-12 last:border-b">
               <div className="grid gap-6 md:grid-cols-[4rem_minmax(0,1fr)_minmax(0,1fr)]">
                 <span className="font-mono text-[var(--text-caption)] text-[var(--color-dim)]">{project.number}</span>
 
@@ -34,7 +34,7 @@ export function Work() {
                   <p className="max-w-sm text-[var(--text-body)] leading-relaxed text-[var(--color-muted)]">
                     {project.description}
                   </p>
-                  <span className="font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-dim)]">
+                  <span className="font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-dim)] transition-colors duration-300 group-hover:text-[var(--color-text)]">
                     {project.status}
                   </span>
                 </div>
@@ -42,7 +42,7 @@ export function Work() {
 
               <div
                 aria-hidden="true"
-                className="mt-10 h-56 w-full origin-left scale-x-100 border border-dashed border-[var(--color-line)] bg-[var(--color-surface)] transition-colors duration-500 group-hover:border-[var(--color-monk)]/40 md:h-72"
+                className="mt-10 h-56 w-full origin-center border border-dashed border-[var(--color-line-subtle)] bg-[var(--color-surface-elevated)] transition-all duration-500 group-hover:scale-[1.01] group-hover:border-[var(--color-monk)]/50 md:h-72"
               />
             </Reveal>
           ))}

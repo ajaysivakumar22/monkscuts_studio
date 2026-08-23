@@ -8,11 +8,11 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[var(--color-line)] py-16">
+    <footer className="bg-[var(--bg-footer)] border-t border-[var(--color-line-subtle)] py-16">
       <Container>
         <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
-          <div className="flex items-center gap-3 text-[var(--color-text)]">
-            <MonkMark className="h-8 w-8" />
+          <div className="group flex items-center gap-3 text-[var(--color-text)]">
+            <MonkMark className="h-8 w-8 text-[var(--color-text)] transition-all duration-500 group-hover:rotate-12 group-hover:text-[var(--color-monk)]" />
             <div>
               <p className="font-mono text-[var(--text-label)] uppercase tracking-[0.2em]">Monk Cuts Studio</p>
               <p className="mt-1 font-mono text-[var(--text-label)] uppercase tracking-[0.2em] text-[var(--color-dim)]">

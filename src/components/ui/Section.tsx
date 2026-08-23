@@ -14,7 +14,7 @@ export function Section({ id, children, className, divider = true }: SectionProp
       id={id}
       className={cn(
         "relative py-24 md:py-32",
-        divider && "border-t border-[var(--color-line)]",
+        divider && "border-t border-[var(--color-line-subtle)]",
         className
       )}
     >

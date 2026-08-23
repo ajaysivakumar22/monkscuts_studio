@@ -8,12 +8,12 @@ import { Button } from "@/components/ui/Button";
 
 export function Founder() {
   return (
-    <Section id="founder">
+    <Section id="founder" className="bg-[var(--bg-founder)]">
       <Container>
         <div className="grid gap-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
           <Reveal>
-            <div className="flex aspect-[4/5] w-full flex-col justify-end border border-[var(--color-line)] bg-[var(--color-surface)] p-8">
-              <MonkMark className="h-14 w-14 text-[var(--color-dim)]" strokeWidth={1} />
+            <div className="group flex aspect-[4/5] w-full flex-col justify-end border border-[var(--color-line-subtle)] bg-[var(--color-surface-card)] p-8 transition-all duration-500 hover:border-[var(--color-monk)]/40 hover:bg-[var(--color-surface-hover)]">
+              <MonkMark className="h-14 w-14 text-[var(--color-dim)] transition-all duration-500 group-hover:scale-105 group-hover:text-[var(--color-monk)]" strokeWidth={1} />
               <p className="mt-6 font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-dim)]">
                 Portrait placeholder — ready for founder imagery
               </p>
@@ -43,7 +43,7 @@ export function Founder() {
               {founder.skills.map((skill) => (
                 <span
                   key={skill.label}
-                  className="border border-[var(--color-line)] px-4 py-2 font-mono text-[var(--text-label)] uppercase tracking-[0.1em] text-[var(--color-muted)]"
+                  className="border border-[var(--color-line-subtle)] bg-[var(--color-surface-elevated)] px-4 py-2 font-mono text-[var(--text-label)] uppercase tracking-[0.1em] text-[var(--color-muted)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-monk)]/40 hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-text)]"
                 >
                   {skill.label}
                 </span>

@@ -1,13 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  /* ---------- Color: black / off-white / monk orange ---------- */
-  --color-bg: #09090b;
-  --color-surface: #121215;
-  --color-elevated: #18181c;
-  --color-line: #232327;
+  /* ---------- Tonal Dark Hierarchy System ---------- */
+  --color-void: #050507;
+  --color-bg-dark: #07070a;
+  --color-bg-primary: #0a0a0d;
+  --color-surface-graphite: #0f0f14;
+  --color-surface-elevated: #141419;
+  --color-surface-card: #18181e;
+  --color-surface-hover: #1e1e26;
 
-  --color-text: #fafafa;
+  /* ---------- Section Background Tokens ---------- */
+  --bg-hero: #050507;
+  --bg-studio: #0f0f14;
+  --bg-capabilities: #0a0a0d;
+  --bg-work: #07070a;
+  --bg-original-ip: #141419;
+  --bg-founder: #0a0a0d;
+  --bg-contact: #07070a;
+  --bg-footer: #040406;
+
+  /* ---------- Borders & Lines ---------- */
+  --color-line: #232327;
+  --color-line-subtle: rgba(255, 255, 255, 0.08);
+  --color-line-strong: #2f2f38;
+
+  /* ---------- Text Contrast Hierarchy ---------- */
+  --color-text: #f4f4f5;
   --color-text-secondary: #d4d4d8;
   --color-muted: #a1a1aa;
   --color-dim: #71717a;
@@ -45,6 +64,7 @@
 
   --animate-marquee: marquee 32s linear infinite;
   --animate-fade-up: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-pulse-subtle: pulse-subtle 4s ease-in-out infinite;
 
   @keyframes marquee {
     from { transform: translateX(0); }
@@ -54,20 +74,24 @@
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  @keyframes pulse-subtle {
+    0%, 100% { opacity: 0.8; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(3px); }
+  }
 }
 
 @layer base {
   * {
-    border-color: var(--color-line);
+    border-color: var(--color-line-subtle);
   }
 
   html {
-    background: var(--color-bg);
+    background: var(--color-void);
     color-scheme: dark;
   }
 
   body {
-    background: var(--color-bg);
+    background: var(--color-bg-primary);
     color: var(--color-text);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
