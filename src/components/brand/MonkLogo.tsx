@@ -10,8 +10,8 @@ type MonkLogoProps = Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "alt"> & 
 /**
  * MONK CUTS STUDIO — Official Logo Component
  *
- * Renders the exact approved MONK CUTS STUDIO logo asset (`/brand/monk-logo-exact.png`)
- * directly without any redraw, font substitution, or recreation.
+ * Renders the exact approved MONK CUTS STUDIO logo asset (`/brand/monk-logo-clean.png`)
+ * trimmed to content boundaries for 100% complete, unclipped rendering.
  */
 export function MonkLogo({
   className,
@@ -21,9 +21,9 @@ export function MonkLogo({
 }: MonkLogoProps) {
   return (
     <img
-      src="/brand/monk-logo-exact.png"
+      src="/brand/monk-logo-clean.png"
       alt={alt}
-      className={cn("h-10 w-auto object-contain select-none", className)}
+      className={cn("h-11 w-auto object-contain select-none", className)}
       loading="eager"
       decoding="async"
       {...rest}

@@ -12,8 +12,8 @@ type MonkFaceProps = Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "alt"> & 
 /**
  * MONK CUTS STUDIO — Official Monkey Artwork Component
  *
- * Renders the exact approved MONK brand image asset (`/brand/monk-face-exact.png`)
- * directly without any redraw, re-interpretation, or tracing.
+ * Renders the exact approved MONK brand image asset (`/brand/monk-face-clean.png`)
+ * trimmed to content boundaries for 100% precision rendering.
  */
 export function MonkFace({
   className,
@@ -25,7 +25,7 @@ export function MonkFace({
 }: MonkFaceProps) {
   return (
     <img
-      src="/brand/monk-face-exact.png"
+      src="/brand/monk-face-clean.png"
       alt={alt}
       className={cn("h-8 w-auto object-contain select-none", className)}
       loading="eager"

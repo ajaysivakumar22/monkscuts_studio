@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { navItems, primaryCta } from "@/data/navigation";
 import { MonkLogo } from "@/components/brand/MonkLogo";
-import { MonkFace } from "@/components/brand/MonkFace";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
@@ -52,17 +51,8 @@ export function Header() {
           className="group flex items-center gap-0 shrink-0"
           aria-label="Monk Cuts Studio — home"
         >
-          {/* Full logo — hidden on very small screens */}
           <MonkLogo
-            className="hidden sm:block h-[42px] w-auto transition-opacity duration-300 group-hover:opacity-80"
-            variant="light"
-          />
-          {/* Icon-only — visible on xs */}
-          <MonkFace
-            className="sm:hidden h-10 w-10 shrink-0 transition-transform duration-300 group-hover:scale-105"
-            showCut
-            outerColor="var(--color-monk-face)"
-            innerColor="var(--color-void)"
+            className="h-9 sm:h-11 md:h-12 w-auto transition-opacity duration-300 group-hover:opacity-80"
           />
         </a>
 

@@ -153,26 +153,27 @@ export function Hero() {
           - Tablet: scaled to 40vw
           - Mobile: reduced to lower-right, smaller scale
       ══════════════════════════════════════════════════════════════ */}
+      {/* ── LARGE MONK FACE — primary visual character ──────────────────
+          Positioned right-[4%-12%] (shifted toward center relative to extreme right),
+          scaled 15% larger (max-h-[680px]), connected visually with text block
+          while maintaining clear separation without text overlap.
+      ─────────────────────────────────────────────────────────────────── */}
       <div
-        className="pointer-events-none absolute right-0 top-1/2 -translate-y-[45%] select-none"
+        className="pointer-events-none absolute right-[2%] sm:right-[4%] md:right-[6%] lg:right-[9%] xl:right-[11%] top-1/2 -translate-y-[45%] select-none"
         style={{ zIndex: 1 }}
         aria-hidden="true"
       >
         <MonkFace
           data-hero-face
           className="
-            h-[55vw] w-[55vw]
-            max-h-[600px] max-w-[600px]
-            min-h-[280px] min-w-[280px]
-            sm:h-[52vw] sm:w-[52vw]
-            md:h-[48vw] md:w-[48vw]
-            lg:h-[50vw] lg:w-[50vw]
-            xl:h-[46vw] xl:w-[46vw]
+            h-[58vw] w-[58vw]
+            max-h-[680px] max-w-[680px]
+            min-h-[290px] min-w-[290px]
+            sm:h-[54vw] sm:w-[54vw]
+            md:h-[50vw] md:w-[50vw]
+            lg:h-[52vw] lg:w-[52vw]
+            xl:h-[48vw] xl:w-[48vw]
           "
-          showCut={false}
-          outerColor="var(--color-monk-face)"
-          innerColor="var(--color-void)"
-          style={{ opacity: 0 }}
         />
       </div>
 
@@ -190,7 +191,7 @@ export function Hero() {
         </div>
 
         {/* Master wordmark — left-dominant composition */}
-        <div className="mt-7 md:mt-9 max-w-[60%] sm:max-w-[55%] md:max-w-[58%] lg:max-w-[54%]">
+        <div className="mt-7 md:mt-9 max-w-[58%] sm:max-w-[54%] md:max-w-[50%] lg:max-w-[46%]">
           <h1 className="font-display font-black leading-[0.92] tracking-tight text-[var(--color-text)] select-none">
             {/* Line 1: MONKCUTS */}
             <span className="block overflow-hidden">
