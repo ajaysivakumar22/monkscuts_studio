@@ -52,7 +52,7 @@ export function Header() {
           aria-label="Monk Cuts Studio — home"
         >
           <MonkLogo
-            className="h-9 sm:h-11 md:h-12 w-auto transition-opacity duration-300 group-hover:opacity-80"
+            className="h-10 sm:h-12 md:h-14 w-auto object-contain transition-opacity duration-300 group-hover:opacity-80"
           />
         </a>
 
