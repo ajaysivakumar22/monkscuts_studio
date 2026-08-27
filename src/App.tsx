@@ -1,4 +1,5 @@
 import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
+import { MonkEntryExperience } from "@/components/motion/MonkEntryExperience";
 import { MonkScrollStory } from "@/components/motion/MonkScrollStory";
 import { Header } from "@/components/navigation/Header";
 import { Hero } from "@/components/sections/Hero/Hero";
@@ -13,6 +14,7 @@ import { Footer } from "@/components/sections/Footer/Footer";
 function App() {
   return (
     <SmoothScrollProvider>
+      <MonkEntryExperience />
       <Header />
       <MonkScrollStory />
       <main>

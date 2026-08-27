@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { navItems, primaryCta } from "@/data/navigation";
-import { MonkMark } from "@/components/brand/MonkMark";
+import { MonkFace } from "@/components/brand/MonkFace";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
@@ -49,9 +49,29 @@ export function Header() {
       )}
     >
       <Container className="flex h-20 items-center justify-between">
-        <a href="#top" className="flex items-center gap-3 text-[var(--color-text)]">
-          <MonkMark className="h-7 w-7 text-[var(--color-text)]" />
-          <span className="text-[var(--text-label)] font-semibold uppercase tracking-[0.18em]">Monk Cuts</span>
+        {/* ── Brand Logomark — MonkFace + MONK CUTS wordmark ── */}
+        <a
+          href="#top"
+          className="group flex items-center gap-2.5 text-[var(--color-text)]"
+          aria-label="Monk Cuts Studio — home"
+        >
+          {/* The face mark — scales on hover */}
+          <MonkFace
+            className="h-9 w-9 shrink-0 transition-transform duration-300 group-hover:scale-110"
+            showCut
+          />
+          {/* Wordmark: M🐒NKCUTS with the face replacing the O */}
+          <span className="hidden sm:flex flex-col leading-none">
+            <span className="text-[var(--text-label)] font-bold uppercase tracking-[0.16em] text-[var(--color-text)]">
+              Monk Cuts
+            </span>
+            <span
+              className="text-[9px] font-semibold uppercase tracking-[0.25em] text-[var(--color-monk-face)]"
+              style={{ marginTop: "1px" }}
+            >
+              Studio
+            </span>
+          </span>
         </a>
 
         <nav className="hidden items-center gap-6 md:flex lg:gap-10" aria-label="Primary">

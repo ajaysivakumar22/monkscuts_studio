@@ -35,6 +35,11 @@
   --color-monk-hover: #ff661a;
   --color-on-monk: #09090b;
 
+  /* Monk mascot — warm amber gold for the monkey artwork */
+  --color-monk-face: #c87a00;
+  --color-monk-face-light: #e08c00;
+  --color-monk-face-dark: #a06000;
+
   /* ---------- Type families ---------- */
   --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-display: var(--font-primary);
