@@ -1,18 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { hero } from "@/data/hero";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { MonkFace } from "@/components/brand/MonkFace";
-import { MonkMark } from "@/components/brand/MonkMark";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function Hero() {
   const scope = useRef<HTMLDivElement>(null);
   const auraRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
-  const [isHoveringWordmark, setIsHoveringWordmark] = useState(false);
 
   useEffect(() => {
     const el = scope.current;
@@ -21,72 +19,60 @@ export function Hero() {
     if (reducedMotion) {
       gsap.set(
         el.querySelectorAll(
-          "[data-hero-line], [data-hero-eyebrow], [data-hero-sub], [data-hero-cta], [data-hero-mark], [data-hero-scroll], [data-hero-guide]"
+          "[data-hero-line], [data-hero-eyebrow], [data-hero-sub], [data-hero-cta], [data-hero-scroll], [data-hero-guide]"
         ),
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          clipPath: "inset(0 0 0% 0)",
-        }
+        { opacity: 1, y: 0, scale: 1, clipPath: "inset(0 0 0% 0)" }
       );
-      // Set MonkFace to visible at its final watermark opacity for reduced motion
-      const faceEl = el.querySelector("[data-hero-face]");
-      if (faceEl) gsap.set(faceEl, { opacity: 0.22, scale: 1, y: 0, rotate: 0 });
+      gsap.set("[data-hero-face]", { opacity: 0.55, scale: 1, y: 0, x: 0 });
       return;
     }
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      // Architectural guideline & eyebrow entrance
-      tl.fromTo(
-        "[data-hero-guide]",
-        { opacity: 0, scaleX: 0 },
-        { opacity: 1, scaleX: 1, duration: 1.2, ease: "power4.inOut" }
-      )
+      tl
+        // 1. Hairline architectural guide
+        .fromTo(
+          "[data-hero-guide]",
+          { opacity: 0, scaleX: 0 },
+          { opacity: 1, scaleX: 1, duration: 1.2, ease: "power4.inOut" }
+        )
+        // 2. Eyebrow badge
         .fromTo(
           "[data-hero-eyebrow]",
           { opacity: 0, y: 16 },
           { opacity: 1, y: 0, duration: 0.6 },
           "-=0.7"
         )
-        // Background monkey face — rises up from below, fades in to subtle watermark opacity
+        // 3. MONK FACE — the dominant visual entrance
+        //    Comes in from the right, slightly cropped, fades to high presence
         .fromTo(
           "[data-hero-face]",
-          { opacity: 0, scale: 0.82, y: 40, rotate: -6 },
-          { opacity: 0.22, scale: 1, y: 0, rotate: 0, duration: 1.6, ease: "power2.out" },
+          { opacity: 0, x: 80, scale: 0.9 },
+          { opacity: 0.65, x: 0, scale: 1, duration: 1.8, ease: "power2.out" },
           "-=0.5"
         )
-        // Sculpted wordmark reveal with split clip-path
+        // 4. Typography — clip-path reveal from bottom
         .fromTo(
           "[data-hero-line]",
           { clipPath: "inset(0 0 100% 0)", y: 44 },
-          { clipPath: "inset(0 0 0% 0)", y: 0, duration: 1.1, stagger: 0.14, ease: "power4.out" },
-          "-=1.0"
+          { clipPath: "inset(0 0 0% 0)", y: 0, duration: 1.1, stagger: 0.12, ease: "power4.out" },
+          "-=1.2"
         )
-        // Inline MonkMark signature
-        .fromTo(
-          "[data-hero-mark]",
-          { opacity: 0, scale: 0.6, rotate: -20 },
-          { opacity: 1, scale: 1, rotate: 0, duration: 0.9, ease: "back.out(1.8)" },
-          "-=0.8"
-        )
-        // Subtext description fade
+        // 5. Sub + CTAs
         .fromTo(
           "[data-hero-sub]",
           { opacity: 0, y: 24 },
           { opacity: 1, y: 0, duration: 0.75 },
           "-=0.5"
         )
-        // CTAs stagger reveal
         .fromTo(
           "[data-hero-cta]",
           { opacity: 0, y: 20 },
           { opacity: 1, y: 0, duration: 0.65, stagger: 0.1 },
           "-=0.4"
         )
-        // Bottom signature bar & scroll cue
+        // 6. Scroll cue
         .fromTo(
           "[data-hero-scroll]",
           { opacity: 0, y: 10 },
@@ -94,37 +80,27 @@ export function Hero() {
           "-=0.3"
         );
 
-      // Pointer parallax — depth & lighting
+      // ── Pointer parallax — monkey follows mouse slowly ──────────────
       const handlePointer = (e: PointerEvent) => {
         if (window.innerWidth < 768) return;
         const xPct = e.clientX / window.innerWidth - 0.5;
         const yPct = e.clientY / window.innerHeight - 0.5;
 
-        // MonkFace background: slow, deep parallax
         gsap.to("[data-hero-face]", {
-          x: xPct * 28,
-          y: yPct * 18,
-          rotate: xPct * 3,
-          duration: 1.4,
-          ease: "power2.out",
+          x: xPct * 22,
+          y: yPct * 14,
+          rotate: xPct * 2,
+          duration: 1.6,
+          ease: "power1.out",
+          overwrite: "auto",
         });
 
-        // Inline MonkMark subtle follow
-        gsap.to("[data-hero-mark]", {
-          x: xPct * 16,
-          y: yPct * 16,
-          rotate: xPct * 8,
-          duration: 0.8,
-          ease: "power2.out",
-        });
-
-        // Atmospheric aura shift
         if (auraRef.current) {
           gsap.to(auraRef.current, {
-            x: xPct * 50,
-            y: yPct * 50,
-            duration: 1.5,
-            ease: "power2.out",
+            x: xPct * 40,
+            y: yPct * 40,
+            duration: 1.8,
+            ease: "power1.out",
           });
         }
       };
@@ -140,146 +116,152 @@ export function Hero() {
     <section
       id="top"
       ref={scope}
-      className="relative flex min-h-[92vh] flex-col justify-between overflow-hidden bg-[var(--bg-hero)] pt-32 pb-16 md:pt-40 md:pb-24 lg:pt-44 lg:pb-28 select-none-text"
+      className="relative flex min-h-screen flex-col overflow-hidden bg-[var(--bg-hero)] pt-28 pb-14 md:pt-36 md:pb-20 lg:pt-40 lg:pb-24"
     >
-      {/* Visual Depth 1: Atmospheric MONK Orange Radial Ambiance */}
+      {/* ── Atmospheric amber aura ─────────────────────────────────── */}
       <div
         ref={auraRef}
         aria-hidden="true"
-        className="pointer-events-none absolute right-1/4 top-1/3 -z-10 h-[30rem] w-[30rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(200,122,0,0.10)_0%,rgba(255,85,0,0.04)_45%,transparent_70%)] blur-3xl opacity-90 sm:h-[40rem] sm:w-[40rem]"
+        className="pointer-events-none absolute right-[10%] top-[20%] -z-10 h-[40vw] w-[40vw] max-h-[600px] max-w-[600px] rounded-full blur-[120px] opacity-80"
+        style={{
+          background: "radial-gradient(circle, rgba(200,122,0,0.18) 0%, rgba(255,85,0,0.06) 50%, transparent 70%)",
+        }}
       />
 
-      {/* Visual Depth 2: Precision Architectural Grid Hairline */}
+      {/* ── Architectural hairline ─────────────────────────────────── */}
       <div
         data-hero-guide
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-24 h-[1px] origin-left bg-gradient-to-r from-transparent via-[var(--color-line-subtle)] to-transparent opacity-60"
+        className="pointer-events-none absolute inset-x-0 top-28 h-px origin-left bg-gradient-to-r from-transparent via-[var(--color-line-subtle)] to-transparent opacity-50"
       />
 
-      {/* ── MONK FACE — the primary background brand visual ───────────────
-          Positioned right, large, behind all content.
-          Uses opacity + amber color treatment for depth without covering text.
-          The monkey "looks out" at the visitor from behind the typography.
-      ─────────────────────────────────────────────────────────────────── */}
+      {/* ══════════════════════════════════════════════════════════════
+          LARGE MONK FACE — the PRIMARY visual of the Hero.
+
+          This is NOT a watermark. It is a major compositional element.
+
+          Positioned to the RIGHT of the viewport — partially cropped
+          intentionally, as per the reference composition.
+          The monkey "looks in" at the visitor.
+
+          Opacity: 0.65 — substantial presence, does not obstruct text.
+          The text runs over the LEFT half of the screen.
+          The monkey owns the RIGHT half.
+
+          Responsive:
+          - Desktop: very large (50vh height minimum)
+          - Tablet: scaled to 40vw
+          - Mobile: reduced to lower-right, smaller scale
+      ══════════════════════════════════════════════════════════════ */}
       <div
-        className="pointer-events-none absolute right-0 top-1/2 -z-10 -translate-y-1/2 overflow-hidden pr-2 sm:pr-6 md:pr-10"
+        className="pointer-events-none absolute right-0 top-1/2 -translate-y-[45%] select-none"
+        style={{ zIndex: 1 }}
         aria-hidden="true"
       >
         <MonkFace
           data-hero-face
-          className="select-none
-            h-64 w-64
-            sm:h-80 sm:w-80
-            md:h-[30rem] md:w-[30rem]
-            lg:h-[38rem] lg:w-[38rem]
-            xl:h-[44rem] xl:w-[44rem]"
+          className="
+            h-[55vw] w-[55vw]
+            max-h-[600px] max-w-[600px]
+            min-h-[280px] min-w-[280px]
+            sm:h-[52vw] sm:w-[52vw]
+            md:h-[48vw] md:w-[48vw]
+            lg:h-[50vw] lg:w-[50vw]
+            xl:h-[46vw] xl:w-[46vw]
+          "
           showCut={false}
           outerColor="var(--color-monk-face)"
           innerColor="var(--color-void)"
+          style={{ opacity: 0 }}
         />
       </div>
 
+      {/* ── CONTENT — sits in the LEFT 60% on desktop, full width mobile ── */}
       <Container className="relative z-10 my-auto w-full">
-        {/* Eyebrow & Live Studio Badge */}
+        {/* Eyebrow */}
         <div data-hero-eyebrow className="flex items-center gap-3">
-          <span className="relative flex h-2.5 w-2.5 items-center justify-center">
+          <span className="relative flex h-2.5 w-2.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-monk)] opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-monk)]" />
           </span>
-          <span className="text-[var(--text-label)] font-semibold uppercase tracking-[0.2em] text-[var(--color-monk)]">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-monk)]">
             {hero.eyebrow}
           </span>
         </div>
 
-        {/* Master Editorial Typography Lockup */}
-        <div
-          className="relative mt-7 md:mt-9"
-          onMouseEnter={() => setIsHoveringWordmark(true)}
-          onMouseLeave={() => setIsHoveringWordmark(false)}
-        >
-          <h1 className="text-display text-[var(--color-text)] select-none">
+        {/* Master wordmark — left-dominant composition */}
+        <div className="mt-7 md:mt-9 max-w-[60%] sm:max-w-[55%] md:max-w-[58%] lg:max-w-[54%]">
+          <h1 className="font-display font-black leading-[0.92] tracking-tight text-[var(--color-text)] select-none">
+            {/* Line 1: MONKCUTS */}
             <span className="block overflow-hidden">
-              <span data-hero-line className="block tracking-tight text-[#f4f4f5] transition-colors duration-500">
+              <span
+                data-hero-line
+                className="block text-[clamp(3.5rem,9vw,8rem)] text-[#f4f4f5]"
+              >
                 {hero.wordmarkLine1}
               </span>
             </span>
-            <span className="block overflow-hidden pt-1 md:pt-2">
-              <span data-hero-line className="relative inline-flex items-center gap-4 text-[var(--color-monk)] tracking-tight sm:gap-6 md:gap-8">
-                <span className="drop-shadow-[0_0_35px_rgba(255,85,0,0.15)]">
-                  {hero.wordmarkLine2}
-                </span>
-                {/* Signature MonkMark inline with STUDIO — retained as editorial detail */}
-                <MonkMark
-                  data-hero-mark
-                  className={`inline-block h-[0.88em] w-[0.88em] shrink-0 text-[var(--color-text)] transition-all duration-500 cursor-pointer ${
-                    isHoveringWordmark
-                      ? "scale-110 text-[var(--color-monk-face)] drop-shadow-[0_0_20px_rgba(200,122,0,0.5)]"
-                      : "opacity-95 hover:scale-105 hover:text-[var(--color-monk-face)]"
-                  }`}
-                  strokeWidth={1.2}
-                  cutStrokeWidth={isHoveringWordmark ? 2.5 : 1.8}
-                  cutClassName={isHoveringWordmark ? "drop-shadow-[0_0_12px_rgba(200,122,0,0.8)]" : ""}
-                />
+            {/* Line 2: STUDIO */}
+            <span className="block overflow-hidden">
+              <span
+                data-hero-line
+                className="block text-[clamp(3.5rem,9vw,8rem)] text-[var(--color-monk)]"
+                style={{ textShadow: "0 0 60px rgba(255,85,0,0.12)" }}
+              >
+                {hero.wordmarkLine2}
               </span>
             </span>
           </h1>
         </div>
 
-        {/* Integrated Subtext & CTA Action Bar */}
-        <div className="mt-10 md:mt-14 grid gap-8 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1fr)] md:items-end lg:grid-cols-[minmax(0,2.1fr)_minmax(0,1fr)]">
+        {/* Subtext & CTAs */}
+        <div className="mt-10 md:mt-12 max-w-[60%] sm:max-w-[55%] md:max-w-[50%] lg:max-w-[44%] space-y-8">
           <p
             data-hero-sub
-            className="max-w-xl text-[var(--text-body-lg)] leading-relaxed text-[var(--color-text-secondary)] font-normal"
+            className="text-[clamp(0.875rem,1.4vw,1.0625rem)] leading-relaxed text-[var(--color-text-secondary)]"
           >
             {hero.description}
           </p>
 
-          <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 md:justify-end">
-            {/* Primary CTA */}
-            <div data-hero-cta className="w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div data-hero-cta>
               <Button
                 href={hero.primaryCta.href}
                 variant="primary"
-                className="group relative w-full sm:w-auto justify-center overflow-hidden font-bold tracking-[0.14em] shadow-[0_0_25px_rgba(255,85,0,0.25)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(255,85,0,0.45)] hover:scale-[1.02]"
+                className="group w-full sm:w-auto justify-center font-bold tracking-[0.12em] shadow-[0_0_24px_rgba(255,85,0,0.22)] hover:shadow-[0_0_36px_rgba(255,85,0,0.42)] hover:scale-[1.02] transition-all duration-300"
               >
-                <span>{hero.primaryCta.label}</span>
+                {hero.primaryCta.label}
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Button>
             </div>
-
-            {/* Secondary CTA */}
-            <div data-hero-cta className="w-full sm:w-auto">
+            <div data-hero-cta>
               <Button
                 href={hero.secondaryCta.href}
                 variant="outline"
-                className="w-full sm:w-auto justify-center border-[var(--color-line-strong)] text-[var(--color-text)] font-semibold tracking-[0.14em] transition-all duration-300 hover:border-[var(--color-monk-face)] hover:text-[var(--color-monk-face)] hover:bg-[rgba(200,122,0,0.05)]"
+                className="w-full sm:w-auto justify-center font-semibold tracking-[0.12em] border-[var(--color-line-strong)] transition-all duration-300 hover:border-[var(--color-monk-face)] hover:text-[var(--color-monk-face)]"
               >
-                <span>{hero.secondaryCta.label}</span>
+                {hero.secondaryCta.label}
               </Button>
             </div>
           </div>
         </div>
 
-        {/* Lower Hero Signature Bar & Scroll Cue */}
+        {/* Signature bar */}
         <div
           data-hero-scroll
-          className="mt-14 md:mt-24 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-t border-[var(--color-line-subtle)] pt-6 md:pt-8"
+          className="mt-16 md:mt-24 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-t border-[var(--color-line-subtle)] pt-6 max-w-[60%] sm:max-w-none"
         >
-          <div className="flex items-center gap-3 text-[var(--text-label)] font-semibold uppercase tracking-[0.18em] text-[var(--color-dim)]">
-            <span className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-monk)]" aria-hidden="true" />
+          <div className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-dim)]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-monk)]" aria-hidden="true" />
             <span>{hero.signature}</span>
           </div>
-
           <a
             href="#studio"
-            className="group inline-flex items-center gap-3 text-[var(--text-label)] font-semibold uppercase tracking-[0.18em] text-[var(--color-dim)] transition-colors duration-300 hover:text-[var(--color-monk)]"
+            className="group inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-dim)] transition-colors duration-300 hover:text-[var(--color-monk)]"
           >
             <span>Explore Studio</span>
             <span className="flex h-7 w-7 items-center justify-center rounded-full border border-[var(--color-line-subtle)] transition-all duration-300 group-hover:border-[var(--color-monk)] group-hover:bg-[rgba(255,85,0,0.1)]">
-              <ArrowDown
-                className="h-3.5 w-3.5 text-[var(--color-monk)] transition-transform duration-300 group-hover:translate-y-0.5"
-                aria-hidden="true"
-              />
+              <ArrowDown className="h-3.5 w-3.5 text-[var(--color-monk)] transition-transform group-hover:translate-y-0.5" aria-hidden="true" />
             </span>
           </a>
         </div>

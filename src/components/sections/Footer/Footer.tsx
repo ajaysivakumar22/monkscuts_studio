@@ -2,7 +2,7 @@ import { socialLinks, footerSignature } from "@/data/social";
 import { contact } from "@/data/contact";
 import { navItems } from "@/data/navigation";
 import { Container } from "@/components/ui/Container";
-import { MonkMark } from "@/components/brand/MonkMark";
+import { MonkLogo } from "@/components/brand/MonkLogo";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -11,14 +11,11 @@ export function Footer() {
     <footer className="bg-[var(--bg-footer)] border-t border-[var(--color-line-subtle)] py-16">
       <Container>
         <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
-          <div className="group flex items-center gap-3 text-[var(--color-text)]">
-            <MonkMark className="h-8 w-8 text-[var(--color-text)] transition-all duration-500 group-hover:rotate-12 group-hover:text-[var(--color-monk)]" />
-            <div>
-              <p className="font-mono text-[var(--text-label)] uppercase tracking-[0.2em]">Monk Cuts Studio</p>
-              <p className="mt-1 font-mono text-[var(--text-label)] uppercase tracking-[0.2em] text-[var(--color-dim)]">
-                {footerSignature}
-              </p>
-            </div>
+          <div className="group flex flex-col gap-2">
+            <MonkLogo className="h-10 w-auto transition-opacity duration-300 group-hover:opacity-80" variant="light" />
+            <p className="mt-1 font-mono text-[var(--text-label)] uppercase tracking-[0.2em] text-[var(--color-dim)]">
+              {footerSignature}
+            </p>
           </div>
 
           <nav className="flex flex-wrap gap-x-8 gap-y-4" aria-label="Footer">

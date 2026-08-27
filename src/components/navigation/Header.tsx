@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { navItems, primaryCta } from "@/data/navigation";
+import { MonkLogo } from "@/components/brand/MonkLogo";
 import { MonkFace } from "@/components/brand/MonkFace";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -19,67 +20,59 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Body scroll lock + focus management + Escape to close
   useEffect(() => {
     if (!menuOpen) return;
-
-    const previousOverflow = document.body.style.overflow;
+    const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     firstMenuLinkRef.current?.focus();
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setMenuOpen(false);
-        menuButtonRef.current?.focus();
-      }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { setMenuOpen(false); menuButtonRef.current?.focus(); }
     };
-    document.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      document.removeEventListener("keydown", onKeyDown);
-    };
+    document.addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = prev; document.removeEventListener("keydown", onKey); };
   }, [menuOpen]);
 
   return (
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
-        scrolled ? "bg-[var(--bg-hero)]/90 backdrop-blur border-b border-[var(--color-line-subtle)]" : "bg-transparent"
+        scrolled
+          ? "bg-[var(--bg-hero)]/90 backdrop-blur border-b border-[var(--color-line-subtle)]"
+          : "bg-transparent"
       )}
     >
       <Container className="flex h-20 items-center justify-between">
-        {/* ── Brand Logomark — MonkFace + MONK CUTS wordmark ── */}
+
+        {/* ── OFFICIAL LOGO ────────────────────────────────────────────
+            Desktop: full MONKCUTS STUDIO wordmark with face icon
+            Mobile: just the MonkFace icon (space-efficient)
+        ─────────────────────────────────────────────────────────── */}
         <a
           href="#top"
-          className="group flex items-center gap-2.5 text-[var(--color-text)]"
+          className="group flex items-center gap-0 shrink-0"
           aria-label="Monk Cuts Studio — home"
         >
-          {/* The face mark — scales on hover */}
-          <MonkFace
-            className="h-9 w-9 shrink-0 transition-transform duration-300 group-hover:scale-110"
-            showCut
+          {/* Full logo — hidden on very small screens */}
+          <MonkLogo
+            className="hidden sm:block h-[42px] w-auto transition-opacity duration-300 group-hover:opacity-80"
+            variant="light"
           />
-          {/* Wordmark: M🐒NKCUTS with the face replacing the O */}
-          <span className="hidden sm:flex flex-col leading-none">
-            <span className="text-[var(--text-label)] font-bold uppercase tracking-[0.16em] text-[var(--color-text)]">
-              Monk Cuts
-            </span>
-            <span
-              className="text-[9px] font-semibold uppercase tracking-[0.25em] text-[var(--color-monk-face)]"
-              style={{ marginTop: "1px" }}
-            >
-              Studio
-            </span>
-          </span>
+          {/* Icon-only — visible on xs */}
+          <MonkFace
+            className="sm:hidden h-10 w-10 shrink-0 transition-transform duration-300 group-hover:scale-105"
+            showCut
+            outerColor="var(--color-monk-face)"
+            innerColor="var(--color-void)"
+          />
         </a>
 
+        {/* ── Nav ─────────────────────────────────────────────────── */}
         <nav className="hidden items-center gap-6 md:flex lg:gap-10" aria-label="Primary">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-[var(--text-label)] font-medium uppercase tracking-[0.12em] text-[var(--color-muted)] transition-colors hover:text-[var(--color-monk)]"
+              className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--color-muted)] transition-colors hover:text-[var(--color-monk)]"
             >
               {item.label}
             </a>
@@ -87,11 +80,10 @@ export function Header() {
         </nav>
 
         <div className="hidden md:block">
-          <Button href={primaryCta.href} variant="outline">
-            {primaryCta.label}
-          </Button>
+          <Button href={primaryCta.href} variant="outline">{primaryCta.label}</Button>
         </div>
 
+        {/* Mobile menu button */}
         <button
           ref={menuButtonRef}
           type="button"
@@ -105,6 +97,7 @@ export function Header() {
         </button>
       </Container>
 
+      {/* Mobile menu drawer */}
       <div
         id="mobile-menu"
         className={cn(
