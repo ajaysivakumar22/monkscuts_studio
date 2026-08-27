@@ -23,14 +23,16 @@ export function Capabilities() {
           </Reveal>
         </div>
 
-        <Reveal as="div" stagger={0.08} className="mt-20 border-t border-[var(--color-line-subtle)]">
+        <Reveal as="div" stagger={0.08} className="mt-16 md:mt-20 border-t border-[var(--color-line-subtle)]">
           {services.map((service) => (
             <div
               key={service.index}
-              className="group relative grid grid-cols-[3rem_1fr] items-baseline gap-4 border-b border-[var(--color-line-subtle)] py-8 transition-all duration-300 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:scale-y-0 before:bg-[var(--color-monk)] before:transition-transform before:duration-300 hover:bg-[var(--color-surface-hover)] hover:pl-4 group-hover:before:scale-y-100 sm:grid-cols-[3rem_minmax(0,1fr)_minmax(0,1.3fr)_2rem] sm:items-center sm:gap-8 sm:px-6"
+              className="group relative grid grid-cols-[3rem_1fr] items-baseline gap-4 border-b border-[var(--color-line-subtle)] py-8 transition-all duration-500 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:scale-y-0 before:bg-[var(--color-monk)] before:transition-transform before:duration-300 hover:bg-[var(--color-surface-hover)] hover:pl-4 group-hover:before:scale-y-100 sm:grid-cols-[3rem_minmax(0,1.2fr)_minmax(0,1.3fr)_2rem] sm:items-center sm:gap-8 sm:px-6"
             >
-              <span className="font-mono text-[var(--text-caption)] text-[var(--color-dim)]">{service.index}</span>
-              <h3 className="text-[var(--text-h3)] font-semibold tracking-tight text-[var(--color-text)] transition-colors duration-300 group-hover:text-[var(--color-monk)]">
+              <span className="font-mono text-[var(--text-caption)] font-semibold text-[var(--color-dim)] transition-colors duration-300 group-hover:text-[var(--color-monk)]">
+                {service.index}
+              </span>
+              <h3 className="text-[var(--text-h3)] font-semibold tracking-tight text-[var(--color-text)] transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--color-monk)]">
                 {service.title}
               </h3>
               <p className="col-span-2 mt-3 text-[var(--text-caption)] leading-relaxed text-[var(--color-muted)] sm:col-span-1 sm:mt-0">
@@ -38,7 +40,7 @@ export function Capabilities() {
               </p>
               <ArrowUpRight
                 aria-hidden="true"
-                className="hidden h-5 w-5 shrink-0 text-[var(--color-dim)] transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--color-monk)] sm:block"
+                className="hidden h-5 w-5 shrink-0 text-[var(--color-dim)] transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[var(--color-monk)] sm:block"
               />
             </div>
           ))}

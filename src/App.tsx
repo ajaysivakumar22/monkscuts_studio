@@ -1,4 +1,5 @@
 import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
+import { MonkScrollStory } from "@/components/motion/MonkScrollStory";
 import { Header } from "@/components/navigation/Header";
 import { Hero } from "@/components/sections/Hero/Hero";
 import { Studio } from "@/components/sections/Studio/Studio";
@@ -13,6 +14,7 @@ function App() {
   return (
     <SmoothScrollProvider>
       <Header />
+      <MonkScrollStory />
       <main>
         <Hero />
         <Studio />

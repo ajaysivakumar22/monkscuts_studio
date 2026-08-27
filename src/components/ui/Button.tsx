@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 type Variant = "primary" | "ghost" | "outline";
 
 const base =
-  "group inline-flex items-center gap-2.5 font-mono text-[var(--text-label)] uppercase tracking-[0.15em] px-6 py-4 transition-colors duration-300 rounded-[var(--radius-sm)]";
+  "group inline-flex items-center gap-2.5 text-[var(--text-label)] font-semibold uppercase tracking-[0.12em] px-6 py-4 transition-all duration-300 rounded-[var(--radius-sm)]";
 
 const variants: Record<Variant, string> = {
   primary: "bg-[var(--color-monk)] text-[var(--color-on-monk)] hover:bg-[var(--color-monk-hover)]",

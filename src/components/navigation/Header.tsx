@@ -51,15 +51,15 @@ export function Header() {
       <Container className="flex h-20 items-center justify-between">
         <a href="#top" className="flex items-center gap-3 text-[var(--color-text)]">
           <MonkMark className="h-7 w-7 text-[var(--color-text)]" />
-          <span className="font-mono text-[var(--text-label)] uppercase tracking-[0.2em]">Monk Cuts</span>
+          <span className="text-[var(--text-label)] font-semibold uppercase tracking-[0.18em]">Monk Cuts</span>
         </a>
 
-        <nav className="hidden items-center gap-10 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-6 md:flex lg:gap-10" aria-label="Primary">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-muted)] transition-colors hover:text-[var(--color-monk)]"
+              className="text-[var(--text-label)] font-medium uppercase tracking-[0.12em] text-[var(--color-muted)] transition-colors hover:text-[var(--color-monk)]"
             >
               {item.label}
             </a>

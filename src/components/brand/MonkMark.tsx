@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 type MonkMarkProps = SVGAttributes<SVGSVGElement> & {
   className?: string;
   strokeWidth?: number;
+  cutClassName?: string;
+  cutStrokeWidth?: number;
   [dataAttribute: `data-${string}`]: string | undefined;
 };
 
@@ -13,7 +15,15 @@ type MonkMarkProps = SVGAttributes<SVGSVGElement> & {
  * the face. Built as an SVG so real brand artwork can replace this file
  * later without touching any layout code that consumes <MonkMark />.
  */
-export function MonkMark({ className, strokeWidth = 1.5, ...rest }: MonkMarkProps) {
+export function MonkMark({
+  className,
+  strokeWidth = 1.5,
+  cutClassName,
+  cutStrokeWidth,
+  ...rest
+}: MonkMarkProps) {
+  const actualCutWidth = cutStrokeWidth ?? strokeWidth;
+
   return (
     <svg
       viewBox="0 0 64 64"
@@ -31,7 +41,15 @@ export function MonkMark({ className, strokeWidth = 1.5, ...rest }: MonkMarkProp
         stroke="currentColor"
         strokeWidth={strokeWidth}
       />
-      <line x1="32" y1="16" x2="32" y2="56" stroke="var(--color-monk)" strokeWidth={strokeWidth} />
+      <line
+        x1="32"
+        y1="16"
+        x2="32"
+        y2="56"
+        stroke="var(--color-monk)"
+        strokeWidth={actualCutWidth}
+        className={cn("transition-all duration-300", cutClassName)}
+      />
       <line x1="23" y1="33" x2="29" y2="33" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" />
       <line x1="35" y1="33" x2="41" y2="33" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" />
     </svg>

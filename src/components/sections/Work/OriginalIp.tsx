@@ -6,7 +6,7 @@ import { Reveal } from "@/components/motion/Reveal";
 
 export function OriginalIp() {
   return (
-    <Section id="original-ip" className="bg-[var(--bg-original-ip)]">
+    <Section id="original-ip" className="relative bg-[var(--bg-original-ip)]">
       <Container>
         <div className="grid gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:items-end">
           <Reveal>
@@ -26,10 +26,15 @@ export function OriginalIp() {
           {originalWorks.map((work) => (
             <Reveal
               key={work.title}
-              className="group flex flex-col justify-between gap-10 bg-[var(--color-surface-card)] p-10 transition-all duration-300 hover:bg-[var(--color-surface-hover)]"
+              className="group relative flex flex-col justify-between gap-10 bg-[var(--color-surface-card)] p-10 transition-all duration-500 hover:bg-[var(--color-surface-hover)] hover:-translate-y-1"
             >
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute right-4 top-4 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(255,85,0,0.08)_0%,transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              />
+
               <div>
-                <p className="font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-monk)]">
+                <p className="font-mono text-[var(--text-label)] font-semibold uppercase tracking-[0.18em] text-[var(--color-monk)]">
                   {work.category}
                 </p>
                 <h3 className="mt-4 text-[var(--text-h3)] font-semibold tracking-tight text-[var(--color-text)] transition-colors duration-300 group-hover:text-[var(--color-monk)]">
