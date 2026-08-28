@@ -167,13 +167,13 @@ export function Hero() {
         </div>
 
         {/* Master wordmark */}
-        <div className="mt-7 md:mt-9 max-w-[58%] sm:max-w-[54%] md:max-w-[50%] lg:max-w-[46%]">
+        <div className="mt-7 md:mt-9 max-w-full sm:max-w-[85%] md:max-w-[70%] lg:max-w-[62%] xl:max-w-[58%]">
           <h1 className="font-display font-black leading-[0.92] tracking-tight text-[var(--color-text)] select-none">
             {/* Line 1: MONKCUTS */}
             <span className="block overflow-hidden">
               <span
                 data-hero-line
-                className="block text-[clamp(3.5rem,9vw,8rem)] text-[#f4f4f5]"
+                className="block text-[clamp(2.75rem,6.5vw,6.5rem)] text-[#f4f4f5]"
               >
                 {hero.wordmarkLine1}
               </span>
@@ -182,7 +182,7 @@ export function Hero() {
             <span className="block overflow-hidden">
               <span
                 data-hero-line
-                className="block text-[clamp(3.5rem,9vw,8rem)] text-[var(--color-monk)]"
+                className="block text-[clamp(2.75rem,6.5vw,6.5rem)] text-[var(--color-monk)]"
                 style={{ textShadow: "0 0 60px rgba(200,122,0,0.12)" }}
               >
                 {hero.wordmarkLine2}
