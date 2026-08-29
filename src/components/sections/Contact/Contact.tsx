@@ -59,12 +59,18 @@ export function Contact() {
 
                 <a
                   href={`mailto:${contact.email}`}
-                  className="group relative flex items-center justify-between overflow-hidden rounded border border-[var(--color-line-subtle)] bg-[#121218] p-4 font-mono transition-all duration-300 hover:border-[var(--color-monk)]/60 hover:bg-[#151520] shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_0_24px_rgba(255,85,0,0.18)]"
+                  className="group relative flex items-center justify-between overflow-hidden rounded border border-[var(--color-line-subtle)] bg-[#121218] p-4 font-mono transition-all duration-300 hover:border-[var(--color-monk)]/60 hover:bg-[#151522] shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(255,85,0,0.22)]"
                 >
+                  {/* Internal Warm Gold/Orange Atmospheric Radial Glow */}
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -inset-10 bg-[radial-gradient(circle_at_80%_50%,rgba(255,85,0,0.18)_0%,transparent_65%)] opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+                  />
+
                   {/* Official Monk Face Artwork — integrated emerging from dark background on right edge */}
                   <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute right-10 -bottom-6 top-0 flex items-center opacity-20 transition-all duration-500 group-hover:opacity-40 group-hover:scale-105 group-hover:translate-x-1"
+                    className="pointer-events-none absolute right-10 -bottom-6 top-0 flex items-center opacity-25 transition-all duration-500 group-hover:opacity-45 group-hover:scale-105 group-hover:translate-x-1"
                   >
                     <MonkFace
                       showCut={false}
@@ -77,7 +83,7 @@ export function Contact() {
                   {/* Internal MONK orange laser edge highlight */}
                   <div
                     aria-hidden="true"
-                    className="absolute left-0 top-0 h-full w-[2px] bg-[var(--color-monk)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-[0_0_10px_rgba(255,85,0,0.8)]"
+                    className="absolute left-0 top-0 h-full w-[2.5px] bg-[var(--color-monk)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-[0_0_12px_rgba(255,85,0,0.9)]"
                   />
 
                   {/* Left: Micro Studio Tag & Primary Email Typography */}
@@ -86,7 +92,7 @@ export function Contact() {
                       <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-monk)] animate-pulse" />
                       <span>DIRECT STUDIO LINE</span>
                     </div>
-                    <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[var(--color-text)] transition-colors duration-300 group-hover:text-[var(--color-monk)] truncate drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                    <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[var(--color-text)] transition-colors duration-300 group-hover:text-[var(--color-monk)] truncate drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                       {contact.email}
                     </span>
                   </div>
