@@ -30,10 +30,10 @@ export function Contact() {
             <div className="flex h-full flex-col justify-between rounded-[var(--radius-lg)] border border-white/10 bg-[#0c0c10] p-8 sm:p-10 shadow-[0_4px_30px_rgba(0,0,0,0.6)]">
               
               {/* Top Text Block */}
-              <div className="space-y-6">
+              <div className="flex flex-col">
                 <Eyebrow>{contact.eyebrow}</Eyebrow>
                 
-                <h2 className="text-[var(--text-h1)] font-semibold leading-[0.96] tracking-tight text-[var(--color-text)]">
+                <h2 className="mt-5 text-[var(--text-h1)] font-semibold leading-[0.96] tracking-tight text-[var(--color-text)]">
                   {contact.statementLine1}
                   <br />
                   {contact.statementLine2}
@@ -43,7 +43,7 @@ export function Contact() {
                   </span>
                 </h2>
 
-                <p className="max-w-md text-sm sm:text-base leading-relaxed text-[var(--color-text-secondary)]">
+                <p className="mt-8 md:mt-10 max-w-md text-sm sm:text-base leading-relaxed text-[var(--color-text-secondary)]">
                   {contact.body}
                 </p>
               </div>
