@@ -46,7 +46,7 @@ export function Studio() {
   };
 
   return (
-    <Section id="studio" className="relative bg-[#09090d] overflow-hidden">
+    <Section id="studio" className="relative bg-[var(--bg-studio)] overflow-hidden">
       
       {/* Subtle Warm MONK Orange Atmospheric Field Background */}
       <div
