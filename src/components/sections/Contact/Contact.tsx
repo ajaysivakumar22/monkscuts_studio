@@ -34,7 +34,7 @@ export function Contact() {
                 <div>
                   <Eyebrow>{contact.eyebrow}</Eyebrow>
                   
-                  <h2 className="mt-6 sm:mt-8 text-[var(--text-h1)] font-semibold leading-[0.96] tracking-tight text-[var(--color-text)]">
+                  <h2 className="mt-6 sm:mt-8 text-4xl sm:text-5xl lg:text-6xl font-bold leading-[0.92] tracking-tight text-[var(--color-text)]">
                     {contact.statementLine1}
                     <br />
                     {contact.statementLine2}
@@ -60,7 +60,7 @@ export function Contact() {
               <div className="border-t border-white/10 pt-6 space-y-4">
                 <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-[var(--color-monk)] font-semibold">
                   <Clock className="h-3.5 w-3.5" />
-                  <span>GUARANTEED RESPONSE WITHIN 2 BIZ DAYS</span>
+                  <span>GUARANTEED RESPONSE WITHIN 1 BIZ DAYS</span>
                 </div>
 
                 <a
