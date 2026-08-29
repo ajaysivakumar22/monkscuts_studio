@@ -8,8 +8,13 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[var(--bg-footer)] border-t border-[var(--color-line-subtle)] py-12 md:py-14">
-      <Container>
+    <footer className="bg-[var(--bg-footer)] border-t border-[var(--color-line-subtle)] py-12 md:py-14 relative overflow-hidden">
+      {/* Subtle Warm MONK Orange Atmospheric Field Background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-10 bg-[radial-gradient(circle_at_50%_100%,rgba(255,85,0,0.05)_0%,transparent_60%)] opacity-80"
+      />
+      <Container className="relative z-10">
         <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
           <div className="group flex flex-col gap-2">
             <MonkLogo className="h-10 w-auto transition-opacity duration-300 group-hover:opacity-80" variant="light" />

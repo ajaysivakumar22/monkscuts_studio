@@ -51,8 +51,13 @@ export function Capabilities() {
   const activeService = services[activeIndex] || services[0];
 
   return (
-    <Section id="capabilities" className="bg-[var(--bg-capabilities)] relative">
-      <Container>
+    <Section id="capabilities" className="bg-[var(--bg-capabilities)] relative overflow-hidden">
+      {/* Subtle Warm MONK Orange Atmospheric Field Background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-10 bg-[radial-gradient(circle_at_80%_30%,rgba(255,85,0,0.07)_0%,transparent_60%)] opacity-80"
+      />
+      <Container className="relative z-10">
         {/* Section Header */}
         <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-end">
           <Reveal>

@@ -18,8 +18,13 @@ export function OriginalIp() {
   };
 
   return (
-    <Section id="original-ip" className="relative bg-[var(--bg-original-ip)]">
-      <Container>
+    <Section id="original-ip" className="relative bg-[var(--bg-original-ip)] overflow-hidden">
+      {/* Subtle Warm MONK Orange Atmospheric Field Background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-10 bg-[radial-gradient(circle_at_85%_40%,rgba(255,85,0,0.08)_0%,transparent_60%)] opacity-80"
+      />
+      <Container className="relative z-10">
         <div className="grid gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:items-end">
           <Reveal>
             <Eyebrow>{originalIpEyebrow}</Eyebrow>

@@ -18,8 +18,13 @@ export function Work() {
   };
 
   return (
-    <Section id="work" className="bg-[var(--bg-work)]">
-      <Container>
+    <Section id="work" className="bg-[var(--bg-work)] relative overflow-hidden">
+      {/* Subtle Warm MONK Orange Atmospheric Field Background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-10 bg-[radial-gradient(circle_at_15%_70%,rgba(255,85,0,0.06)_0%,transparent_60%)] opacity-80"
+      />
+      <Container className="relative z-10">
         <Reveal>
           <Eyebrow>{workEyebrow}</Eyebrow>
           <h2 className="mt-6 max-w-3xl text-[var(--text-h1)] font-semibold leading-[0.98] tracking-tight text-[var(--color-text)]">
