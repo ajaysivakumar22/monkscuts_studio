@@ -29,27 +29,29 @@ export function Contact() {
           <Reveal className="h-full">
             <div className="flex h-full flex-col justify-between rounded-[var(--radius-lg)] border border-white/10 bg-[#0c0c10] p-8 sm:p-10 shadow-[0_4px_30px_rgba(0,0,0,0.6)]">
               
-              {/* Top Text Block */}
-              <div className="flex flex-col">
-                <Eyebrow>{contact.eyebrow}</Eyebrow>
-                
-                <h2 className="mt-5 text-[var(--text-h1)] font-semibold leading-[0.96] tracking-tight text-[var(--color-text)]">
-                  {contact.statementLine1}
-                  <br />
-                  {contact.statementLine2}
-                  <br />
-                  <span className="text-[var(--color-monk)] drop-shadow-[0_0_20px_rgba(255,85,0,0.3)]">
-                    {contact.statementLine3}
-                  </span>
-                </h2>
+              {/* Internal Content - Distributed with Balanced Editorial Breathing Room */}
+              <div className="flex flex-1 flex-col justify-between pb-8">
+                <div>
+                  <Eyebrow>{contact.eyebrow}</Eyebrow>
+                  
+                  <h2 className="mt-6 sm:mt-8 text-[var(--text-h1)] font-semibold leading-[0.96] tracking-tight text-[var(--color-text)]">
+                    {contact.statementLine1}
+                    <br />
+                    {contact.statementLine2}
+                    <br />
+                    <span className="text-[var(--color-monk)] drop-shadow-[0_0_20px_rgba(255,85,0,0.3)]">
+                      {contact.statementLine3}
+                    </span>
+                  </h2>
+                </div>
 
-                <p className="mt-8 md:mt-10 max-w-md text-sm sm:text-base leading-relaxed text-[var(--color-text-secondary)]">
+                <p className="mt-8 sm:mt-12 max-w-md text-sm sm:text-base leading-relaxed text-[var(--color-text-secondary)]">
                   {contact.body}
                 </p>
               </div>
 
               {/* Bottom Email Card & Response Guarantee */}
-              <div className="mt-10 border-t border-white/10 pt-6 space-y-4">
+              <div className="border-t border-white/10 pt-6 space-y-4">
                 <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-[var(--color-monk)] font-semibold">
                   <Clock className="h-3.5 w-3.5" />
                   <span>GUARANTEED RESPONSE WITHIN 2 BIZ DAYS</span>
