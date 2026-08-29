@@ -1,14 +1,59 @@
+import React, { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services, servicesEyebrow, servicesStatement } from "@/data/services";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
-import { ArrowUpRight } from "lucide-react";
+import { CapabilityRow } from "./CapabilityRow";
+import { CapabilityVisualStage } from "./CapabilityVisualStage";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Capabilities() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const rowsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const reducedMotion = useReducedMotion();
+
+  // ScrollTrigger integration: auto-advance active capability as user scrolls
+  useEffect(() => {
+    if (reducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      rowsRef.current.forEach((el, index) => {
+        if (!el) return;
+
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 65%",
+          end: "bottom 35%",
+          onEnter: () => setActiveIndex(index),
+          onEnterBack: () => setActiveIndex(index),
+        });
+      });
+    });
+
+    return () => ctx.revert();
+  }, [reducedMotion]);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveIndex((prev) => (prev + 1) % services.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveIndex((prev) => (prev - 1 + services.length) % services.length);
+    }
+  };
+
+  const activeService = services[activeIndex] || services[0];
+
   return (
-    <Section id="capabilities" className="bg-[var(--bg-capabilities)]">
+    <Section id="capabilities" className="bg-[var(--bg-capabilities)] relative">
       <Container>
+        {/* Section Header */}
         <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-end">
           <Reveal>
             <Eyebrow>{servicesEyebrow}</Eyebrow>
@@ -18,33 +63,66 @@ export function Capabilities() {
           </Reveal>
           <Reveal delay={0.1} className="md:justify-self-end">
             <p className="max-w-sm text-[var(--text-body-lg)] leading-relaxed text-[var(--color-text-secondary)] md:text-right">
-              Every capability is built in-house, so a project never loses its point of view moving between disciplines.
+              Seven distinct creative disciplines, engineered under one unified craft architecture.
             </p>
           </Reveal>
         </div>
 
-        <Reveal as="div" stagger={0.08} className="mt-16 md:mt-20 border-t border-[var(--color-line-subtle)]">
-          {services.map((service) => (
-            <div
-              key={service.index}
-              className="group relative grid grid-cols-[3rem_1fr] items-baseline gap-4 border-b border-[var(--color-line-subtle)] py-8 transition-all duration-500 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:scale-y-0 before:bg-[var(--color-monk)] before:transition-transform before:duration-300 hover:bg-[var(--color-surface-hover)] hover:pl-4 group-hover:before:scale-y-100 sm:grid-cols-[3rem_minmax(0,1.2fr)_minmax(0,1.3fr)_2rem] sm:items-center sm:gap-8 sm:px-6"
-            >
-              <span className="font-mono text-[var(--text-caption)] font-semibold text-[var(--color-dim)] transition-colors duration-300 group-hover:text-[var(--color-monk)]">
-                {service.index}
-              </span>
-              <h3 className="text-[var(--text-h3)] font-semibold tracking-tight text-[var(--color-text)] transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--color-monk)]">
-                {service.title}
-              </h3>
-              <p className="col-span-2 mt-3 text-[var(--text-caption)] leading-relaxed text-[var(--color-muted)] sm:col-span-1 sm:mt-0">
-                {service.description}
-              </p>
-              <ArrowUpRight
-                aria-hidden="true"
-                className="hidden h-5 w-5 shrink-0 text-[var(--color-dim)] transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[var(--color-monk)] sm:block"
-              />
+        {/* Interactive Editorial Split-Stage System */}
+        <div className="mt-16 md:mt-20 grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-start">
+          
+          {/* Left Column: Interactive Capability Index */}
+          <div
+            role="tablist"
+            aria-label="Studio Capabilities Disciplines"
+            tabIndex={0}
+            onKeyDown={handleKeyDown}
+            className="flex flex-col border-t border-[var(--color-line-subtle)] focus:outline-none"
+          >
+            {services.map((service, index) => {
+              const isActive = index === activeIndex;
+              return (
+                <div
+                  key={service.id}
+                  ref={(el) => {
+                    rowsRef.current[index] = el;
+                  }}
+                  className="flex flex-col"
+                >
+                  <CapabilityRow
+                    service={service}
+                    isActive={isActive}
+                    onSelect={() => setActiveIndex(index)}
+                  />
+
+                  {/* Mobile Inline Visual Response (Visible on screens < 1024px when active) */}
+                  {isActive && (
+                    <div className="p-4 bg-[#07070a] border-b border-[var(--color-line-subtle)] lg:hidden animate-in fade-in duration-300">
+                      <CapabilityVisualStage visualType={service.visualType} />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Right Column: Sticky Contextual Visual Stage (Desktop 1024px+) */}
+          <div className="hidden lg:block sticky top-28 w-full">
+            <div className="rounded-[var(--radius-lg)] border border-[var(--color-line-subtle)] bg-[#07070a] p-2 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+              <CapabilityVisualStage visualType={activeService.visualType} />
             </div>
-          ))}
-        </Reveal>
+
+            {/* Sub-Stage Indicator Bar */}
+            <div className="mt-4 flex items-center justify-between font-mono text-xs text-[var(--color-dim)] px-2">
+              <span className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-[var(--color-monk)] animate-pulse" />
+                ACTIVE FOCUS: [{activeService.index}] {activeService.shortLabel.toUpperCase()}
+              </span>
+              <span>7 DISCIPLINES / ONE MIND</span>
+            </div>
+          </div>
+
+        </div>
       </Container>
     </Section>
   );
