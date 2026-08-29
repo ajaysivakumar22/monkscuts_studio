@@ -69,7 +69,7 @@ export function Capabilities() {
         </div>
 
         {/* Interactive Editorial Split-Stage System */}
-        <div className="mt-16 md:mt-20 grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-start">
+        <div className="mt-10 md:mt-14 grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-start">
 
           {/* Left Column: Interactive Capability Index */}
           <div

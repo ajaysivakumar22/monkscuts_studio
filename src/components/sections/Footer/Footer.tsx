@@ -8,7 +8,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[var(--bg-footer)] border-t border-[var(--color-line-subtle)] py-16">
+    <footer className="bg-[var(--bg-footer)] border-t border-[var(--color-line-subtle)] py-12 md:py-14">
       <Container>
         <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
           <div className="group flex flex-col gap-2">
@@ -51,7 +51,7 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="mt-16 font-mono text-[var(--text-meta)] text-[var(--color-dim)]">
+        <p className="mt-10 md:mt-12 font-mono text-[var(--text-meta)] text-[var(--color-dim)]">
           &copy; {year} Monk Cuts Studio. All rights reserved.
         </p>
       </Container>

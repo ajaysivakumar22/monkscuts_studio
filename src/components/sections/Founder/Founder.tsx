@@ -10,7 +10,7 @@ export function Founder() {
   return (
     <Section id="founder" className="bg-[var(--bg-founder)]">
       <Container>
-        <div className="grid gap-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
+        <div className="grid gap-10 lg:gap-14 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
           <Reveal>
             <div className="group flex aspect-[4/5] w-full flex-col justify-end border border-[var(--color-line-subtle)] bg-[var(--color-surface-card)] p-8 transition-all duration-500 hover:border-[var(--color-monk)]/40 hover:bg-[var(--color-surface-hover)]">
               <MonkFace className="h-16 w-16 transition-all duration-500 group-hover:scale-105" showCut={false} outerColor="var(--color-monk-face)" innerColor="var(--color-void)" />
@@ -30,7 +30,7 @@ export function Founder() {
               </h2>
             </Reveal>
 
-            <Reveal delay={0.1} className="mt-10">
+            <Reveal delay={0.1} className="mt-6 md:mt-8">
               <p className="font-mono text-[var(--text-label)] uppercase tracking-[0.15em] text-[var(--color-monk)]">
                 {founder.name}
               </p>
@@ -39,7 +39,7 @@ export function Founder() {
               </p>
             </Reveal>
 
-            <Reveal delay={0.15} stagger={0.05} className="mt-10 flex flex-wrap gap-3">
+            <Reveal delay={0.15} stagger={0.05} className="mt-6 md:mt-8 flex flex-wrap gap-3">
               {founder.skills.map((skill) => (
                 <span
                   key={skill.label}
@@ -50,7 +50,7 @@ export function Founder() {
               ))}
             </Reveal>
 
-            <Reveal delay={0.2} className="mt-10">
+            <Reveal delay={0.2} className="mt-6 md:mt-8">
               <Button href={founder.profileHref} variant="ghost" className="px-0">
                 {founder.profileLabel} &rarr;
               </Button>

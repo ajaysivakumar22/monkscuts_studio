@@ -13,7 +13,7 @@ export function Section({ id, children, className, divider = true }: SectionProp
     <section
       id={id}
       className={cn(
-        "relative py-24 md:py-32",
+        "relative py-16 md:py-20 lg:py-24 scroll-mt-20 md:scroll-mt-24",
         divider && "border-t border-[var(--color-line-subtle)]",
         className
       )}

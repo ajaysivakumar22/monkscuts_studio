@@ -34,7 +34,7 @@ export function OriginalIp() {
           </Reveal>
         </div>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-line-subtle)] bg-[var(--color-line-subtle)] md:grid-cols-2">
+        <div className="mt-10 md:mt-14 grid gap-px overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-line-subtle)] bg-[var(--color-line-subtle)] md:grid-cols-2">
           {originalWorks.map((work) => (
             <Reveal key={work.title} className="h-full">
               <div

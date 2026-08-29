@@ -108,7 +108,7 @@ export function Hero() {
     <section
       id="top"
       ref={scope}
-      className="relative flex min-h-screen flex-col overflow-hidden bg-[var(--bg-hero)] pt-28 pb-14 md:pt-36 md:pb-20 lg:pt-40 lg:pb-24"
+      className="relative flex min-h-screen flex-col overflow-hidden bg-[var(--bg-hero)] pt-24 pb-10 md:pt-32 md:pb-14 lg:pt-36 lg:pb-16"
     >
       {/* ── Atmospheric warm gold aura (Zero red shift) ────────────────── */}
       <div
@@ -226,7 +226,7 @@ export function Hero() {
         {/* Signature bar */}
         <div
           data-hero-scroll
-          className="mt-16 md:mt-24 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-t border-[var(--color-line-subtle)] pt-6 max-w-[58%] sm:max-w-none"
+          className="mt-12 md:mt-16 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-t border-[var(--color-line-subtle)] pt-6 max-w-[58%] sm:max-w-none"
         >
           <div className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-dim)]">
             <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-monk-face)]" aria-hidden="true" />

@@ -15,7 +15,7 @@ export function Contact() {
   return (
     <Section id="contact" className="bg-[var(--bg-contact)]">
       <Container>
-        <div className="grid gap-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <div className="grid gap-10 md:gap-14 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           <Reveal>
             <Eyebrow>{contact.eyebrow}</Eyebrow>
             <h2 className="mt-6 text-[var(--text-h1)] font-semibold leading-[0.96] tracking-tight text-[var(--color-text)]">

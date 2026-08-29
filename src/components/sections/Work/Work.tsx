@@ -27,7 +27,7 @@ export function Work() {
           </h2>
         </Reveal>
 
-        <div className="mt-16 md:mt-20 flex flex-col">
+        <div className="mt-10 md:mt-14 flex flex-col">
           {projects.map((project, i) => (
             <Reveal
               key={project.number}
@@ -35,7 +35,7 @@ export function Work() {
               className="border-t border-[var(--color-line-subtle)] last:border-b"
             >
               <div
-                className="group py-10 md:py-14 cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-monk)]"
+                className="group py-8 md:py-10 cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-monk)]"
                 role="button"
                 tabIndex={0}
                 onClick={() => setActiveProject(project)}
