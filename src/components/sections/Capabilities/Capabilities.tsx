@@ -9,8 +9,32 @@ import { Reveal } from "@/components/motion/Reveal";
 import { CapabilityRow } from "./CapabilityRow";
 import { CapabilityVisualStage } from "./CapabilityVisualStage";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { Target, Cpu, Sparkles, Layers } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const philosophyCards = [
+  {
+    icon: Target,
+    title: "Strategy First",
+    description: "Deep alignment on brand architecture, target positioning, and clear craft direction before any pixels move.",
+  },
+  {
+    icon: Layers,
+    title: "System Design",
+    description: "Building scalable visual tokens, type rules, and reusable component libraries that hold up as brands expand.",
+  },
+  {
+    icon: Cpu,
+    title: "AI-Augmented Craft",
+    description: "Blending traditional studio execution with cutting-edge AI scoring and generative workflows for speed and depth.",
+  },
+  {
+    icon: Sparkles,
+    title: "Impact Execution",
+    description: "Engineered for high-trust authority and unmissable visual presence across every digital and physical touchpoint.",
+  },
+];
 
 export function Capabilities() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -51,7 +75,12 @@ export function Capabilities() {
   const activeService = services[activeIndex] || services[0];
 
   return (
-    <Section id="capabilities" className="bg-[var(--bg-capabilities)] relative">
+    <Section id="capabilities" className="bg-[var(--bg-capabilities)] relative overflow-hidden">
+      
+      {/* Subtle Top & Bottom Transition Boundary Hairlines */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--color-monk)]/40 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--color-monk)]/20 to-transparent" />
+
       <Container>
         {/* Section Header */}
         <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-end">
@@ -108,9 +137,7 @@ export function Capabilities() {
 
           {/* Right Column: Sticky Contextual Visual Stage (Desktop 1024px+) */}
           <div className="hidden lg:block sticky top-28 w-full">
-            <div className="rounded-[var(--radius-lg)] border border-[var(--color-line-subtle)] bg-[#07070a] p-2 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
-              <CapabilityVisualStage visualType={activeService.visualType} />
-            </div>
+            <CapabilityVisualStage visualType={activeService.visualType} />
 
             {/* Sub-Stage Indicator Bar */}
             <div className="mt-4 flex items-center justify-between font-mono text-xs text-[var(--color-dim)] px-2">
@@ -118,11 +145,56 @@ export function Capabilities() {
                 <span className="h-2 w-2 rounded-full bg-[var(--color-monk)] animate-pulse" />
                 ACTIVE FOCUS: [{activeService.index}] {activeService.shortLabel.toUpperCase()}
               </span>
-              <span>7 DISCIPLINES / ONE MIND</span>
+              <span className="text-[var(--color-monk)]">7 DISCIPLINES // ONE MIND</span>
             </div>
           </div>
 
         </div>
+
+        {/* ── THE FOUR PHILOSOPHY CARDS ─────────────────────────────
+            Strategy / Design / Technology / Impact supporting pillars
+            with elevated graphite depth and subtle hover state
+        ─────────────────────────────────────────────────────────── */}
+        <Reveal className="mt-24 md:mt-32 border-t border-[var(--color-line-subtle)] pt-16">
+          <div className="mb-10 flex items-center justify-between">
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--color-monk)] font-semibold">
+              // STUDIO PHILOSOPHY & PILLARS
+            </span>
+            <span className="font-mono text-xs text-[var(--color-dim)]">
+              CRAFT FOUNDATION
+            </span>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {philosophyCards.map((card, i) => {
+              const IconComp = card.icon;
+              return (
+                <div
+                  key={i}
+                  className="group relative flex flex-col justify-between rounded-[var(--radius-md)] border border-[var(--color-line-subtle)] bg-[#0c0c10] p-6 transition-all duration-300 hover:border-[var(--color-monk)]/40 hover:bg-[#121218] hover:-translate-y-1 shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
+                >
+                  <div className="space-y-4">
+                    <div className="flex h-10 w-10 items-center justify-center rounded border border-[var(--color-line-subtle)] bg-[#14141c] text-[var(--color-monk)] transition-colors duration-300 group-hover:border-[var(--color-monk)]/50 group-hover:bg-[var(--color-monk)]/10">
+                      <IconComp className="h-5 w-5" />
+                    </div>
+                    <h4 className="text-lg font-semibold tracking-tight text-[var(--color-text)] transition-colors duration-300 group-hover:text-[var(--color-monk)]">
+                      {card.title}
+                    </h4>
+                    <p className="text-xs leading-relaxed text-[var(--color-muted)]">
+                      {card.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-3 font-mono text-[10px] text-[var(--color-dim)]">
+                    <span>PILLAR // 0{i + 1}</span>
+                    <span className="text-[var(--color-monk)] opacity-0 transition-opacity duration-300 group-hover:opacity-100">&rarr;</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </Reveal>
+
       </Container>
     </Section>
   );
