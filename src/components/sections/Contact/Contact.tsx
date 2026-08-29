@@ -4,6 +4,7 @@ import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
 import { useContactForm } from "@/hooks/useContactForm";
+import { MonkFace } from "@/components/brand/MonkFace";
 import { Loader2, ArrowUpRight, Clock } from "lucide-react";
 
 const fieldClasses =
@@ -56,8 +57,21 @@ export function Contact() {
 
                 <a
                   href={`mailto:${contact.email}`}
-                  className="group relative flex items-center justify-between overflow-hidden rounded border border-[var(--color-line-subtle)] bg-[#121218] p-4 font-mono transition-all duration-300 hover:border-[var(--color-monk)]/60 hover:bg-[#161622] shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_0_24px_rgba(255,85,0,0.18)]"
+                  className="group relative flex items-center justify-between overflow-hidden rounded border border-[var(--color-line-subtle)] bg-[#121218] p-4 font-mono transition-all duration-300 hover:border-[var(--color-monk)]/60 hover:bg-[#151520] shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_0_24px_rgba(255,85,0,0.18)]"
                 >
+                  {/* Official Monk Face Artwork — integrated emerging from dark background on right edge */}
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute right-10 -bottom-6 top-0 flex items-center opacity-20 transition-all duration-500 group-hover:opacity-40 group-hover:scale-105 group-hover:translate-x-1"
+                  >
+                    <MonkFace
+                      showCut={false}
+                      outerColor="var(--color-monk-face)"
+                      innerColor="#121218"
+                      className="h-28 w-28 -rotate-12"
+                    />
+                  </div>
+
                   {/* Internal MONK orange laser edge highlight */}
                   <div
                     aria-hidden="true"
@@ -65,18 +79,18 @@ export function Contact() {
                   />
 
                   {/* Left: Micro Studio Tag & Primary Email Typography */}
-                  <div className="flex flex-col gap-1 min-w-0 pr-3">
+                  <div className="relative z-10 flex flex-col gap-1 min-w-0 pr-3">
                     <div className="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-[var(--color-dim)] group-hover:text-[var(--color-monk)] transition-colors duration-300">
                       <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-monk)] animate-pulse" />
                       <span>DIRECT STUDIO LINE</span>
                     </div>
-                    <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[var(--color-text)] transition-colors duration-300 group-hover:text-[var(--color-monk)] truncate">
+                    <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[var(--color-text)] transition-colors duration-300 group-hover:text-[var(--color-monk)] truncate drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                       {contact.email}
                     </span>
                   </div>
 
                   {/* Right: Editorial Directional Indicator */}
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded border border-white/10 bg-[#1a1a24] text-[var(--color-monk)] transition-all duration-300 group-hover:border-[var(--color-monk)]/50 group-hover:bg-[var(--color-monk)]/20">
+                  <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded border border-white/10 bg-[#1a1a24]/90 text-[var(--color-monk)] transition-all duration-300 group-hover:border-[var(--color-monk)]/50 group-hover:bg-[var(--color-monk)]/20 shadow-md">
                     <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
                 </a>
