@@ -46,7 +46,7 @@ export function Studio() {
   };
 
   return (
-    <Section id="studio" className="relative bg-[#09090d] overflow-hidden">
+    <Section id="studio" className="relative bg-[#09090d] overflow-hidden scroll-mt-24 md:scroll-mt-28 pt-28 md:pt-36">
       
       {/* Subtle Warm MONK Orange Atmospheric Field Background */}
       <div
@@ -76,10 +76,10 @@ export function Studio() {
         </Reveal>
 
         {/* Studio Statement & Signature Stage Split Layout */}
-        <div className="mt-8 grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-center">
+        <div className="mt-6 md:mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-center">
           
           {/* Left: Statement & Copy */}
-          <div className="space-y-6">
+          <div className="space-y-5">
             <Reveal as="h2" className="text-[var(--text-h1)] font-semibold leading-[0.98] tracking-tight text-[var(--color-text)]">
               {studio.statementLine1}
               <br />
@@ -107,7 +107,7 @@ export function Studio() {
         {/* Four Philosophy Pillar Cards (Strategy, Design, Technology, Impact) */}
         <Reveal
           stagger={0.1}
-          className="mt-20 md:mt-24 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-12 md:mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
         >
           {principles.map((principle, index) => {
             const isActive = index === activePillarIndex;
@@ -123,14 +123,14 @@ export function Studio() {
                 onMouseEnter={() => setActivePillarIndex(index)}
                 onKeyDown={(e) => handleKeyDown(e, index)}
                 className={cn(
-                  "group relative flex flex-col justify-between gap-6 rounded-[var(--radius-md)] border p-7 transition-all duration-300 cursor-pointer outline-none shadow-[0_4px_20px_rgba(0,0,0,0.5)]",
+                  "group relative flex flex-col justify-between gap-5 rounded-[var(--radius-md)] border p-6 transition-all duration-300 cursor-pointer outline-none shadow-[0_4px_20px_rgba(0,0,0,0.5)]",
                   "before:absolute before:inset-x-0 before:top-0 before:h-[2px] before:bg-[var(--color-monk)] before:transition-transform before:duration-300 origin-left",
                   isActive
                     ? "bg-[#0f0f16] border-[var(--color-monk)]/50 before:scale-x-100 before:shadow-[0_0_15px_rgba(255,85,0,0.8)] -translate-y-1"
                     : "bg-[#0b0b0f] border-[var(--color-line-subtle)] before:scale-x-0 hover:bg-[#0e0e14] hover:before:scale-x-50"
                 )}
               >
-                <div className="space-y-3">
+                <div className="space-y-2.5">
                   <div className="flex items-center justify-between font-mono text-sm">
                     <span
                       className={cn(

@@ -20,7 +20,7 @@ export function StudioCraftStage({ activePillarIndex, onSelectPillar }: StudioCr
   const IconComp = activeNode.icon;
 
   return (
-    <div className="relative w-full rounded-[var(--radius-lg)] border border-[var(--color-line-subtle)] bg-[#0a0a0e] p-6 shadow-[0_0_40px_rgba(0,0,0,0.8)] overflow-hidden">
+    <div className="relative w-full rounded-[var(--radius-lg)] border border-[var(--color-line-subtle)] bg-[#0a0a0e] p-5 shadow-[0_0_40px_rgba(0,0,0,0.8)] overflow-hidden">
       
       {/* Background Radial Orange Aura */}
       <div
@@ -35,7 +35,7 @@ export function StudioCraftStage({ activePillarIndex, onSelectPillar }: StudioCr
       />
 
       {/* Header Stage Status */}
-      <div className="relative z-10 flex items-center justify-between font-mono text-xs text-[var(--color-dim)] border-b border-[var(--color-line-subtle)] pb-4">
+      <div className="relative z-10 flex items-center justify-between font-mono text-xs text-[var(--color-dim)] border-b border-[var(--color-line-subtle)] pb-3">
         <span className="flex items-center gap-2 font-semibold text-[var(--color-monk)]">
           <span className="h-2 w-2 rounded-full bg-[var(--color-monk)] animate-pulse" />
           STUDIO CRAFT SYSTEM // 0{activePillarIndex + 1}
@@ -44,9 +44,9 @@ export function StudioCraftStage({ activePillarIndex, onSelectPillar }: StudioCr
       </div>
 
       {/* Center Dynamic Architectural Node Display */}
-      <div className="relative z-10 my-6 flex flex-col items-center justify-center py-6 text-center">
-        <div className="relative flex h-24 w-24 items-center justify-center rounded-full border border-[var(--color-monk)]/40 bg-[var(--color-monk)]/10 text-[var(--color-monk)] shadow-[0_0_30px_rgba(255,85,0,0.25)] transition-all duration-500">
-          <IconComp className="h-10 w-10 text-[var(--color-monk)]" />
+      <div className="relative z-10 my-4 flex flex-col items-center justify-center py-4 text-center">
+        <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-[var(--color-monk)]/40 bg-[var(--color-monk)]/10 text-[var(--color-monk)] shadow-[0_0_30px_rgba(255,85,0,0.25)] transition-all duration-500">
+          <IconComp className="h-8 w-8 text-[var(--color-monk)]" />
 
           {/* Rotating Laser Ring */}
           <div
@@ -57,16 +57,16 @@ export function StudioCraftStage({ activePillarIndex, onSelectPillar }: StudioCr
           />
         </div>
 
-        <h4 className="mt-4 text-xl font-bold tracking-tight text-[var(--color-text)]">
+        <h4 className="mt-3 text-lg font-bold tracking-tight text-[var(--color-text)]">
           {activeNode.label}
         </h4>
-        <p className="mt-1 font-mono text-xs uppercase tracking-widest text-[var(--color-monk)] font-medium">
+        <p className="mt-0.5 font-mono text-xs uppercase tracking-widest text-[var(--color-monk)] font-medium">
           {activeNode.subtitle}
         </p>
       </div>
 
       {/* 4-Node Connecting Energy Pipeline */}
-      <div className="relative z-10 grid grid-cols-4 gap-2 border-t border-[var(--color-line-subtle)] pt-4">
+      <div className="relative z-10 grid grid-cols-4 gap-2 border-t border-[var(--color-line-subtle)] pt-3">
         {pillarNodes.map((node, i) => {
           const isActive = i === activePillarIndex;
           return (
@@ -74,7 +74,7 @@ export function StudioCraftStage({ activePillarIndex, onSelectPillar }: StudioCr
               key={node.index}
               onClick={() => onSelectPillar(i)}
               className={cn(
-                "group relative flex flex-col items-center rounded p-2 transition-all duration-300 text-center focus:outline-none",
+                "group relative flex flex-col items-center rounded p-1.5 transition-all duration-300 text-center focus:outline-none",
                 isActive
                   ? "bg-[var(--color-monk)]/10 border border-[var(--color-monk)]/40 shadow-[0_0_12px_rgba(255,85,0,0.2)]"
                   : "bg-[#0f0f14] border border-[var(--color-line-subtle)] hover:border-[var(--color-monk)]/30"
