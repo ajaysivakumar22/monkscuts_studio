@@ -4,7 +4,7 @@ import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
 import { useContactForm } from "@/hooks/useContactForm";
-import { Loader2, ArrowUpRight, Clock, Mail } from "lucide-react";
+import { Loader2, ArrowUpRight, Clock } from "lucide-react";
 
 const fieldClasses =
   "w-full border-b border-[var(--color-line-strong)] bg-transparent py-2.5 text-[var(--text-body)] text-[var(--color-text)] placeholder:text-[var(--color-dim)] transition-colors focus:border-[var(--color-monk)] focus:outline-none";
@@ -56,13 +56,29 @@ export function Contact() {
 
                 <a
                   href={`mailto:${contact.email}`}
-                  className="group flex items-center justify-between rounded border border-[var(--color-line-subtle)] bg-[#121218] p-4 font-mono text-sm uppercase tracking-wider text-[var(--color-text)] transition-all duration-300 hover:border-[var(--color-monk)] hover:bg-[var(--color-monk)]/10 hover:text-[var(--color-monk)]"
+                  className="group relative flex items-center justify-between overflow-hidden rounded border border-[var(--color-line-subtle)] bg-[#121218] p-4 font-mono transition-all duration-300 hover:border-[var(--color-monk)]/60 hover:bg-[#161622] shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_0_24px_rgba(255,85,0,0.18)]"
                 >
-                  <span className="flex items-center gap-2.5 font-bold">
-                    <Mail className="h-4 w-4 text-[var(--color-monk)]" />
-                    {contact.email}
-                  </span>
-                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[var(--color-monk)]" />
+                  {/* Internal MONK orange laser edge highlight */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute left-0 top-0 h-full w-[2px] bg-[var(--color-monk)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-[0_0_10px_rgba(255,85,0,0.8)]"
+                  />
+
+                  {/* Left: Micro Studio Tag & Primary Email Typography */}
+                  <div className="flex flex-col gap-1 min-w-0 pr-3">
+                    <div className="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-[var(--color-dim)] group-hover:text-[var(--color-monk)] transition-colors duration-300">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-monk)] animate-pulse" />
+                      <span>DIRECT STUDIO LINE</span>
+                    </div>
+                    <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[var(--color-text)] transition-colors duration-300 group-hover:text-[var(--color-monk)] truncate">
+                      {contact.email}
+                    </span>
+                  </div>
+
+                  {/* Right: Editorial Directional Indicator */}
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded border border-white/10 bg-[#1a1a24] text-[var(--color-monk)] transition-all duration-300 group-hover:border-[var(--color-monk)]/50 group-hover:bg-[var(--color-monk)]/20">
+                    <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </div>
                 </a>
               </div>
 
