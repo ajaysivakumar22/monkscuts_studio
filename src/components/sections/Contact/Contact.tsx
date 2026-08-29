@@ -5,7 +5,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
 import { useContactForm } from "@/hooks/useContactForm";
 import { MonkFace } from "@/components/brand/MonkFace";
-import { Loader2, ArrowUpRight, Clock } from "lucide-react";
+import { Loader2, ArrowUpRight, Clock, Mail } from "lucide-react";
 
 const fieldClasses =
   "w-full border-b border-[var(--color-line-strong)] bg-transparent py-2.5 text-[var(--text-body)] text-[var(--color-text)] placeholder:text-[var(--color-dim)] transition-colors focus:border-[var(--color-monk)] focus:outline-none";
@@ -43,6 +43,12 @@ export function Contact() {
                       {contact.statementLine3}
                     </span>
                   </h2>
+
+                  {/* Orange Accent Line Detail */}
+                  <div className="mt-5 flex items-center gap-1.5" aria-hidden="true">
+                    <span className="h-[2px] w-8 rounded-full bg-[var(--color-monk)] shadow-[0_0_8px_rgba(255,85,0,0.6)]" />
+                    <span className="h-[2px] w-1.5 rounded-full bg-[var(--color-monk)]/60" />
+                  </div>
                 </div>
 
                 <p className="mt-8 sm:mt-12 max-w-md text-sm sm:text-base leading-relaxed text-[var(--color-text-secondary)]">
@@ -59,18 +65,18 @@ export function Contact() {
 
                 <a
                   href={`mailto:${contact.email}`}
-                  className="group relative flex items-center justify-between overflow-hidden rounded border border-[var(--color-line-subtle)] bg-[#121218] p-4 font-mono transition-all duration-300 hover:border-[var(--color-monk)]/60 hover:bg-[#151522] shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(255,85,0,0.22)]"
+                  className="group relative flex items-center justify-between overflow-hidden rounded border border-[var(--color-line-subtle)] bg-[#121218] p-4 font-mono transition-all duration-300 hover:border-[var(--color-monk)]/60 hover:bg-[#151522] shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(255,85,0,0.25)]"
                 >
                   {/* Internal Warm Gold/Orange Atmospheric Radial Glow */}
                   <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute -inset-10 bg-[radial-gradient(circle_at_80%_50%,rgba(255,85,0,0.18)_0%,transparent_65%)] opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+                    className="pointer-events-none absolute -inset-10 bg-[radial-gradient(circle_at_82%_50%,rgba(255,85,0,0.28)_0%,transparent_65%)] opacity-80 transition-opacity duration-300 group-hover:opacity-100"
                   />
 
                   {/* Official Monk Face Artwork — integrated emerging from dark background on right edge */}
                   <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute right-10 -bottom-6 top-0 flex items-center opacity-25 transition-all duration-500 group-hover:opacity-45 group-hover:scale-105 group-hover:translate-x-1"
+                    className="pointer-events-none absolute right-10 -bottom-6 top-0 flex items-center opacity-40 transition-all duration-500 group-hover:opacity-65 group-hover:scale-105 group-hover:translate-x-1"
                   >
                     <MonkFace
                       showCut={false}
@@ -86,10 +92,14 @@ export function Contact() {
                     className="absolute left-0 top-0 h-full w-[2.5px] bg-[var(--color-monk)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-[0_0_12px_rgba(255,85,0,0.9)]"
                   />
 
-                  {/* Left: Micro Studio Tag & Primary Email Typography */}
-                  <div className="relative z-10 flex flex-col gap-1 min-w-0 pr-3">
+                  {/* Left: Circular Mail Badge */}
+                  <div className="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--color-monk)]/30 bg-[#1e1510] text-[var(--color-monk)] transition-transform duration-300 group-hover:scale-105 shadow-[0_0_12px_rgba(255,85,0,0.2)]">
+                    <Mail className="h-5 w-5 text-[var(--color-monk)]" />
+                  </div>
+
+                  {/* Center: Micro Studio Tag & Primary Email Typography */}
+                  <div className="relative z-10 flex flex-1 flex-col gap-1 min-w-0 px-4">
                     <div className="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-[var(--color-dim)] group-hover:text-[var(--color-monk)] transition-colors duration-300">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-monk)] animate-pulse" />
                       <span>DIRECT STUDIO LINE</span>
                     </div>
                     <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[var(--color-text)] transition-colors duration-300 group-hover:text-[var(--color-monk)] truncate drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
@@ -97,9 +107,9 @@ export function Contact() {
                     </span>
                   </div>
 
-                  {/* Right: Editorial Directional Indicator */}
-                  <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded border border-white/10 bg-[#1a1a24]/90 text-[var(--color-monk)] transition-all duration-300 group-hover:border-[var(--color-monk)]/50 group-hover:bg-[var(--color-monk)]/20 shadow-md">
-                    <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  {/* Right: Rounded Square Action Indicator */}
+                  <div className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/20 bg-black/50 text-[var(--color-monk)] transition-all duration-300 group-hover:border-[var(--color-monk)]/60 group-hover:bg-[var(--color-monk)]/20 shadow-md">
+                    <ArrowUpRight className="h-4 w-4 text-[var(--color-monk)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
                 </a>
               </div>
